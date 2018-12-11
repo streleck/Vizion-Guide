@@ -223,10 +223,11 @@ copyYmlButton.addEventListener('click', function(){
   # following line. 
   #xpack.monitoring.elasticsearch:`
   
-  let hiddenTextArea = `<textarea id="hidden-text" value="${ymlText}"></textarea>`
-  let hiddenPlace = document.getElementById('hiddenPlace');
-  hiddenPlace.append(hiddenTextArea);
-  hiddenTextArea.select();
-  Document.execCommand('copy');
-  hiddenPlace.remove();
+  let hiddenPlace = document.getElementById('hidden-place');
+  let showingPlace = document.getElementById('showing-place');
+  hiddenPlace.value = ymlText;
+  hiddenPlace.select();
+  document.execCommand('copy');
+  showingPlace.select();
+  document.execCommand('paste');
 })
