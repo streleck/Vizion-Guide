@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>A Guide to Using vizion.ai</title>
+    <meta name="vizion.ai guide" content="Walkthroughs for simple setups using vizion.ai elasticsearch app">
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/new-app.css">
+  </head>
+  <body> 
+    <div class="top-bar">
+      <img src="assets/images/vizion-logo.png" alt="vizion.ai logo">
+    </div>
+    <div class="main-content">
+      <div class="major-step">
+        <h3 class="major-step-title collapsed">1) Create Vizion Account</h3>
+        <div class="sub-instruction">
+          <p><a href="https://app3.vizion.ai/signup" target="_blank">Sign up for your vizion account here.</a></p>
+        </div>
+      </div>
+      <div class="major-step">
+        <h3 class="major-step-title collapsed">2) Generate New App</h3>
+        <div class="sub-instruction">
+          <p>From your account dashboard, navigate to <strong>Management &gt Configure &gt Elasticsearch Apps</strong></p>
+          <img class="instruction-image" id="create-first-click" src="assets/images/app-create-first-click.png">
+          <img class="instruction-image" id="create-second-click" src="assets/images/app-create-second-click.png">
+        </div>
+      </div>
+      <div class="major-step">
+        <h3 class="major-step-title collapsed">3) App Credentials</h3>
+        <div class="sub-instruction">
+          <p>Copy the credantials provided.</p>
+        </div>
+      </div>
+      <div class="major-step">
+        <h3 class="major-step-title collapsed">4) Download and Install Filebeat</h3>
+        <div class="sub-instruction">
+          <p>Filebeat is a tool that lives on your webserver and automatically sends log data to Elasticsearch, allowing you to work with and (with Kibana) visuaize your data.</p>
+          <p><a href="https://www.elastic.co/downloads/beats/filebeat" target="_blank">Link to official filebeat docs</a></p>
+        </div>
+      </div>
+      <div class="major-step">
+          <h3 class="major-step-title collapsed">5) Filebeat Configuration File</h3>
+          <div class="sub-instruction">
+            <p>Filebeat is configured using a <a href="https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html" target="_blank"> YAML</a> file. To quickly connect to your vizion.ai app, open the file called 'filebeat.yml' on your webserver, which was created upon installation. </p>
+            <p>Enter your vizion.ai elasticsearch url below and click the button to copy the contents of a new 'filebeat.yml'. Replace the text in your webserver .yml file with this.</p>
+            <label for="vizion-elastic-url">app url:</label>
+            <input type="text" id="vizion-elastic-url">
+            <button type="button" id="copy-yml">Copy text for .yml file</button>
+            <!-- Hidden text for copying to clip board -->
+          </div>
+          <div id="hiddenPlace" style="display: hidden;"></div>
+        </div>   
+    </div>
+  </body>
+  <script type="text/javascript" src="assets/javascript/new-app.js"></script>
+</html>
