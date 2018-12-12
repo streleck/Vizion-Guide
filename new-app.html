@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
@@ -11,6 +11,8 @@
     <div class="top-bar">
       <img src="assets/images/vizion-logo.png" alt="vizion.ai logo">
     </div>
+    <h2 id="guide-headline">Elasticsearch with Vizion.ai</h2>
+    <p id="guide-description">This guide will take you through the steps of setting using Vizion.ai to set up an Elasticsearch app with filebeat, allow you to collect and visualize data on your web app. It is assumed that you already have a running web app on a Linux/Apache 2 server. However, the bulk of the tutorial will apply to a variety of server setups and will include links for further information.</p>
     <div class="main-content">
       <div class="major-step">
         <h3 class="major-step-title collapsed">1) Create Vizion Account</h3>
@@ -20,39 +22,46 @@
         </div>
       </div>
       <div class="major-step">
-        <h3 class="major-step-title collapsed">2) Generate New App</h3>
+        <h3 class="major-step-title collapsed">2) Generate New ES App</h3>
         <div class="sub-instruction">
           <p>From your account dashboard, navigate to:</p>
           <p><strong>Management &gt Configure &gt Elasticsearch Apps</strong></p>
-          <img class="instruction-image" id="create-first-click" src="assets/images/app-create-first-click.png">
-          <img class="instruction-image" id="create-second-click" src="assets/images/app-create-second-click.png">
+          <img class="instruction-image" src="assets/images/app-create-first-click.png">
+          <img class="instruction-image" src="assets/images/app-create-second-click.png">
         </div>
       </div>
       <div class="major-step">
         <h3 class="major-step-title collapsed">3) App Credentials</h3>
         <div class="sub-instruction">
-          <p>Copy the credantials provided.</p>
+          <p>When your ES app is successfully created, you should see the following:</p>
+          <img class="instruction-image" src="assets/images/app-credentials.png">
+          <p>Copy and save each of the fields here, as this will be the only time they are given to you. Note that the field labeled 'ES URL' can be broken down into parts that will be later used for your Filebeat config and to log into Kibana. You may want to save these individual parts as well.</p>
+          <img class="instruction-image" id="credentials-split" src="assets/images/app-credentials-split.png">
         </div>
       </div>
       <div class="major-step">
         <h3 class="major-step-title collapsed">4) Download and Install Filebeat</h3>
         <div class="sub-instruction">
           <p>Filebeat is a tool that lives on your webserver and automatically sends log data to Elasticsearch, allowing you to work with and (with Kibana) visuaize your data.</p>
+          <p>Enter the following commands into your webserver terminal:</p>
+          <p>1.</p>
+          <p><span class="code-snippet">curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.5.3-x86_64.rpm</span></p>
+          <p>2.</p>
+          <p><span class="code-snippet">sudo rpm -vi filebeat-6.5.3-x86_64.rpm</span></p>
           <p><a href="https://www.elastic.co/downloads/beats/filebeat" target="_blank">Link to official filebeat docs</a></p>
         </div>
       </div>
       <div class="major-step">
           <h3 class="major-step-title collapsed">5) Filebeat Configuration File</h3>
           <div class="sub-instruction">
-            <p>Filebeat is configured using a <a href="https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html" target="_blank"> YAML</a> file. To quickly connect to your vizion.ai app, open the file called 'filebeat.yml' on your webserver, which was created upon installation. </p>
-            <p>Enter your vizion.ai elasticsearch url below and click the button to copy the contents of a new 'filebeat.yml'. Replace the text in your webserver .yml file with this.</p>
-            <label for="vizion-elastic-url">app url:</label>
+            <p>Filebeat is configured using a <a href="https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html" target="_blank"> YAML</a> file. To quickly connect to your vizion.ai app, open the file called 'filebeat.yml' at <span class="code-snippet">/etc/filebeat</span> on your webserver, which was created upon installation. </p>
+            <p>Enter your vizion.ai elasticsearch url below and click the button to generate the contents of a new 'filebeat.yml'. Replace the text in your webserver .yml file with this.</p>
+            <label for="vizion-elastic-url">ES URL:</label>
             <input type="text" id="vizion-elastic-url">
-            <button type="button" id="copy-yml">Copy text for .yml file</button>
-            <!-- Hidden text for copying to clip board -->
+            <button type="button" id="copy-yml">Generate text for .yml file</button>
+            <p class="error-message" id="yml-auto-complete-error">There was an error filling all the needed fields from your url. Please make sure to copy the entire ES URL provided to you and try again. You can instead copy the template below and manually complete the fields in the 'Elasticsearch Output' section.</p>
+            <textarea id="yml-text-to-copy" rows="12" cols="86"></textarea>
           </div>
-          <textarea id="hidden-place"></textarea>
-          <textarea id="showing-place"></textarea>
         </div>   
     </div>
   </body>
