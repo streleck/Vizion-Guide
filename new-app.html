@@ -21,6 +21,7 @@
           <p>note: You are required to use a business email address and won't to be allowed to sign up with an address that uses a common personal email domain, such as gmail.com.</p>
         </div>
       </div>
+
       <div class="major-step">
         <h3 class="major-step-title collapsed">2) Generate New ES App</h3>
         <div class="sub-instruction">
@@ -30,6 +31,7 @@
           <img class="instruction-image" src="assets/images/app-create-second-click.png">
         </div>
       </div>
+
       <div class="major-step">
         <h3 class="major-step-title collapsed">3) App Credentials</h3>
         <div class="sub-instruction">
@@ -39,8 +41,21 @@
           <img class="instruction-image" id="credentials-split" src="assets/images/app-credentials-split.png">
         </div>
       </div>
+
       <div class="major-step">
-        <h3 class="major-step-title collapsed">4) Download and Install Filebeat</h3>
+        <h3 class="major-step-title collapsed">4) Test ES Connectivity by Logging In to Kibana</h3>
+        <div class="sub-instruction">
+          <p>Go to <a href="https://app3.vizion.ai/app/kibana" target="_blank">https://app3.vizion.ai/app/kibana</a> or to the Kibana URL given to you with your credentials, if different.</p>
+          <p>Your logion username and password are derived from the 'ES URL' given to you upon creation of your ES app in Vizion.ai. See previous section for instructions.</p>
+          <p>Once in, use the left bar to navigate to 'Dev Tools', then click the green arrow next to 'GET _search' in the main panel. This sends a query for all of your ES data.</p>
+          <img class="instruction-image" src="assets/images/kibana-first-query.png">
+          <p>A successful query should send some JSON data that includes <span class="code-snippet">"timed_out" : false.</span></p>
+          <p>You may want to take some time to play with this window to learn how <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html" target="_blank">Elasticsearch queries</a> are structured. Try adding some data and then querying it.</p>
+        </div>
+      </div>
+
+      <div class="major-step">
+        <h3 class="major-step-title collapsed">5) Download and Install Filebeat</h3>
         <div class="sub-instruction">
           <p>Filebeat is a tool that lives on your webserver and automatically sends log data to Elasticsearch, allowing you to work with and (with Kibana) visuaize your data.</p>
           <p>Enter the following commands into your webserver terminal:</p>
@@ -48,21 +63,49 @@
           <p><span class="code-snippet">curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.5.3-x86_64.rpm</span></p>
           <p>2.</p>
           <p><span class="code-snippet">sudo rpm -vi filebeat-6.5.3-x86_64.rpm</span></p>
-          <p><a href="https://www.elastic.co/downloads/beats/filebeat" target="_blank">Link to official filebeat docs</a></p>
+          <p><a href="https://www.elastic.co/guide/en/beats/filebeat/current/index.html" target="_blank">Link to official filebeat docs</a></p>
         </div>
       </div>
+
       <div class="major-step">
-          <h3 class="major-step-title collapsed">5) Filebeat Configuration File</h3>
-          <div class="sub-instruction">
-            <p>Filebeat is configured using a <a href="https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html" target="_blank"> YAML</a> file. To quickly connect to your vizion.ai app, open the file called 'filebeat.yml' at <span class="code-snippet">/etc/filebeat</span> on your webserver, which was created upon installation. </p>
-            <p>Enter your vizion.ai elasticsearch url below and click the button to generate the contents of a new 'filebeat.yml'. Replace the text in your webserver .yml file with this.</p>
-            <label for="vizion-elastic-url">ES URL:</label>
-            <input type="text" id="vizion-elastic-url">
-            <button type="button" id="copy-yml">Generate text for .yml file</button>
-            <p class="error-message" id="yml-auto-complete-error">There was an error filling all the needed fields from your url. Please make sure to copy the entire ES URL provided to you and try again. You can instead copy the template below and manually complete the fields in the 'Elasticsearch Output' section.</p>
-            <textarea id="yml-text-to-copy" rows="12" cols="86"></textarea>
-          </div>
-        </div>   
+        <h3 class="major-step-title collapsed">6) Filebeat Configuration File</h3>
+        <div class="sub-instruction">
+          <p>Filebeat is configured using a <a href="https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html" target="_blank"> YAML</a> file. To quickly connect to your vizion.ai app, on your webserver, open the file called 'filebeat.yml', located inside the folder'/etc/filebeat'.</p>
+          <p>To do this, first give yourself permissions: <span class="code-snippet">sudo su</span></p>
+          <p>Then open it: <span class="code-snippet">nano /etc/filebeat/filebeat.yml</span></p>
+          <p>Enter your vizion.ai elasticsearch url below and click the button to generate the contents of a new 'filebeat.yml'. Replace the text in your webserver .yml file with this.</p>
+          <label for="vizion-elastic-url">ES URL:</label>
+          <input type="text" id="vizion-elastic-url">
+          <button type="button" id="copy-yml">Generate text for .yml file</button>
+          <p class="error-message" id="yml-auto-complete-error">There was an error filling all the needed fields from your url. Please make sure to copy the entire ES URL provided to you and try again. You can instead copy the template below and manually complete the fields in the 'Elasticsearch Output' section.</p>
+          <textarea id="yml-text-to-copy" rows="12" cols="86"></textarea>
+          <p>Once you've pasted this in, 'Ctrl + 'X' to exit and 'y' to save to 'filebeat.yml', then enter</p>
+          <p><span class="code-snippet">sudo service filebeat start</span></p>
+          <p>and you should get an: [&nbsp&nbsp&nbsp<span style="font-family: 'Courier New', Courier, monospace; color: green">OK</span>&nbsp&nbsp&nbsp]</p>
+          <p>If you instead get: [<span style="font-family: 'Courier New', Courier, monospace; color: red">FAILED</span>]&nbsp, double-check your file to make sure you have copied everything correctly and that it follows proper YAML syntax.</p>
+        </div>
+      </div> 
+
+      <div class="major-step">
+        <h3 class="major-step-title collapsed">8) Check Filebeat Connectivity</h3>
+        <div class="sub-instruction">
+          <p>Check the filebeat logs with&nbsp&nbsp<span class="code-snippet">nano /var/log/filebeat/filebeat</span></p>
+          <p>or&nbsp&nbsp<span class="code-snippet">tail -f /var/log/filebeat/filebeat</span></p>
+          <p>If the logs indicate that there are no errors and that filebeat is sending data, go to your Kibana site as described in step 4. Query your data and look for indeces that start with 'filebeat-'.</p>
+        </div>
+      </div>
+
+      <div class="major-step">
+        <h3 class="major-step-title collapsed">9) Apache2 Plugin for Filebeat</h3>
+        <div class="sub-instruction">
+          <p>To get data from your Apache server sent to your ES app, you need to install the Apache 2 plugin:</p>
+          <p><span class="code-snippet">filebeat modules enable apache2</span></p>
+          <p>To make sure it's been enabled:</p>
+          <p><span class="code-snippet">filebeat modules list</span></p>
+          <p>and make sure Apache2 is listed as enabled.</p>
+        </div>
+      </div>
+
     </div>
   </body>
   <script type="text/javascript" src="assets/javascript/new-app.js"></script>
