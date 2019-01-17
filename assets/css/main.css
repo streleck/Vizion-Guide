@@ -1,0 +1,8 @@
+body {
+  background-color: royalblue;
+}
+.top-bar {
+  width: 100%;
+  height: 60px;
+  background-color: white;
+}
