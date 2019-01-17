@@ -1,6 +1,6 @@
 # Welcome to Vizion.ai
 
-[Get your Vizion ELK cluster started in minutes](https://app.vizion.ai)
+If you don't Vizion ELK cluster, [get one started in minutes](https://app.vizion.ai)
 
 ### Want to get your servers up and connected to Vizion for log search? Here's how:
 
