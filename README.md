@@ -1,4 +1,5 @@
-# Vizion-Guide
-https://streleck.github.io/Vizion-Guide/
+# Welcome to Vizion.ai
 
-[Link me, baby](https://github.com/streleck/Vizion-Guide/blob/master/readme2.md)
+### Want to get your servers up and connected to Vizion for log search? Here's how:
+
+#### option 1) Use a plug-in script
