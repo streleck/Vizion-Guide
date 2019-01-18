@@ -4,9 +4,9 @@ If you don't Vizion ELK cluster, [get one started in minutes](https://app.vizion
 
 ### Want to get your servers up and connected to Vizion for log search? Here's how:
 
-+ #### option 1) [Use a plug-in script](www.helloworld.neolms.com)
++ #### option 1) [Use a plug-in script](./beats-with-script.md)
 
-+ #### option 2) [Download and install beats manually](www.google.com)
++ #### option 2) [Download and install beats manually](./beats-manual.md)
 
 ### Want to see samples of ES in action?
 
