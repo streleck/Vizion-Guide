@@ -47,7 +47,7 @@ To install and configure Auditbeat, enter the following into your console along 
 
 Auditbeat comes with two modules already running - Auditd and File Integrity. File integrity tracks changes to files within specified directories. You can change which directories will be tracked (beyond the defaults) in the Auditbeat config file: `/etc/auditbeat/auditbeat.yml`. Auditd rules are specified in their own files in the folder `/etc/auditbeat/audit.rules.d`.
 
-[More on Auditbeat modules](https://www.elastic.co/guide/en/beats/auditbeat/current/auditbeat-modules.html){:target="_blank"}
+[More on Auditbeat modules](https://www.elastic.co/guide/en/beats/auditbeat/current/auditbeat-modules.html" target="_blank)
 
 **You should now be sending data to your Vizion ELK app. View it in [Kibana](https://app.vizion.ai/app/kibana)**
 
