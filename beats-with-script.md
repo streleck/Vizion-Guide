@@ -19,7 +19,6 @@ Modules available: *Apache2, Auditd, Elasticsearch, haproxy, Icinga, IIS, Kafka,
 For debugging, you can view your Filebeat error logs at `/var/log/filebeat/filebeat` or change the configuration at `/etc/filebeat/filebeat.yml`.
 
 
-
 ## Metricbeat
 Metricbeat is a lightweight shipper for metric data, that will send system data and metrics to your Vizion Elk app. [more](https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-overview.html)
 
@@ -48,11 +47,11 @@ To install and configure Auditbeat, enter the following into your console along 
 
 Auditbeat comes with two modules already running - Auditd and File Integrity. File integrity tracks changes to files within specified directories. You can change which directories will be tracked (beyond the defaults) in the Auditbeat config file: `/etc/auditbeat/auditbeat.yml`. Auditd rules are specified in their own files in the folder `/etc/auditbeat/audit.rules.d`.
 
-[More on Auditbeat modules](https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-modules-overview.html)
+[More on Auditbeat modules](https://www.elastic.co/guide/en/beats/auditbeat/current/auditbeat-modules-overview.html)
 
 **You should now be sending data to your Vizion ELK app. View it in [Kibana](https://app.vizion.ai/app/kibana)**
 
-For debugging, you can view your Auditbeat error logs at `/var/log/auditbeat/auditbeat` or change the configuration at `/etc/filebeat/filebeat.yml`.
+For debugging, you can view your Auditbeat error logs at `/var/log/auditbeat/auditbeat` or change the configuration at `/etc/auditbeat/auditbeat.yml`.
 
 ### Heartbeat
 
