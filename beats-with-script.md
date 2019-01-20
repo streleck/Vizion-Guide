@@ -4,7 +4,7 @@ Beats is the platform for single-purpose data shippers. They send data from your
 ## Filebeat
 Filebeat is a lightweight shipper for log data, that will automatically crawl your log files and send log data to your Vizion Elk app. [more](https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-overview.html)
 
-To install and configure Filebeat, enter the following into your console along with the url given to you when you created your Vizion ELK app.
+To install and configure Filebeat, enter the following into your console along with the url given to you when you created your Vizion ELK app. Make sure you are using elevated privileges for the install.
 
     curl ec2-54-184-247-238.us-west-2.compute.amazonaws.com/install-config-metricbeat.sh > install-config-metricbeat.sh; chmod a+x    install-config-metricbeat.sh; ./install-config-metricbeat.sh << your Vizion ELK url here >>
 
@@ -24,7 +24,7 @@ For debugging, you can view your Filebeat error logs at `/var/log/filebeat/fileb
 ## Metricbeat
 Metricbeat is a lightweight shipper for metric data, that will send system data and metrics to your Vizion Elk app. [more](https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-overview.html)
 
-To install and configure Metricbeat, enter the following into your console along with the url given to you when you created your Vizion ELK app.
+To install and configure Metricbeat, enter the following into your console along with the url given to you when you created your Vizion ELK app. Make sure you are using elevated privileges for the install.
 
     curl ec2-54-184-247-238.us-west-2.compute.amazonaws.com/install-config-metricbeat.sh > install-config-metricbeat.sh; chmod a+x    install-config-metricbeat.sh; ./install-config-metricbeat.sh << your Vizion ELK url here >>
     
@@ -45,7 +45,7 @@ For debugging, you can view your Metricbeat error logs at `/var/log/metricbeat/m
 ## Auditbeat
 Auditbeat is a lightweight shipper that you can install on your servers to audit the activities of users and processes on your systems and send the data to your Vizion Elk app. [more](https://www.elastic.co/guide/en/beats/auditbeat/current/auditbeat-overview.html)
 
-To install and configure Auditbeat, enter the following into your console along with the url given to you when you created your Vizion ELK app.
+To install and configure Auditbeat, enter the following into your console along with the url given to you when you created your Vizion ELK app. Make sure you are using elevated privileges for the install.
 
     curl ec2-54-184-247-238.us-west-2.compute.amazonaws.com/install-config-metricbeat.sh > install-config-metricbeat.sh; chmod a+x    install-config-metricbeat.sh; ./install-config-metricbeat.sh << your Vizion ELK url here >>
 
@@ -62,22 +62,22 @@ For debugging, you can view your Auditbeat error logs at `/var/log/auditbeat/aud
 ## Heartbeat
 Heartbeat is a lightweight daemon that you install on a remote server to periodically check the status of your services and determine whether they are available. This uptime data can then be sent to your Vizion Elk app. [more](https://www.elastic.co/guide/en/beats/heartbeat/current/heartbeat-overview.html)
 
-To install and configure Heartbeat, enter the following into your console along with the url given to you when you created your Vizion ELK app.
+To install and configure Heartbeat, enter the following into your console along with the url given to you when you created your Vizion ELK app. Make sure you are using elevated privileges for the install.
 
     curl ec2-54-184-247-238.us-west-2.compute.amazonaws.com/install-config-metricbeat.sh > install-config-metricbeat.sh; chmod a+x    install-config-metricbeat.sh; ./install-config-metricbeat.sh << your Vizion ELK url here >>
 
-The intallation script will prompt you to select the proper environment, then will prompt you to enter the urls you want to monitor.
+The intallation script will prompt you to select the proper environment.
+
+Add the urls for Heartbeat to monitor by opening `/etc/hearbeat/heartbeat.yml` and adding them to the array in the field `urls:` under `heartbeat.monitors:` using [YAML syntax](https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html)
 
 **You should now be sending data to your Vizion ELK app. View it in [Kibana](https://app.vizion.ai/app/kibana)**
-
-To add or change urls for Heartbeat to monitor, open `/etc/hearbeat/heartbeat.yml` and add them to the field `urls:` under `heartbeat.monitors:` using [YAML syntax](https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html)
 
 For debugging, you can view your Metricbeat error logs at `/var/log/heartbeat/heartbeat` or change the configuration at `/etc/heartbeat/heartbeat.yml`.
 
 ## Packetbeat
 Packetbeat is a real-time network packet analyzer that you can use with your Vizion ELK app to provide an application monitoring and performance analytics system. [more](https://www.elastic.co/guide/en/beats/packetbeat/current/packetbeat-overview.html)
 
-To install and configure Packetbeat, enter the following into your console along with the url given to you when you created your Vizion ELK app.
+To install and configure Packetbeat, enter the following into your console along with the url given to you when you created your Vizion ELK app. Make sure you are using elevated privileges for the install.
 
     curl ec2-54-184-247-238.us-west-2.compute.amazonaws.com/install-config-metricbeat.sh > install-config-metricbeat.sh; chmod a+x    install-config-metricbeat.sh; ./install-config-metricbeat.sh << your Vizion ELK url here >>
 
