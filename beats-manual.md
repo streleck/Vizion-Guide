@@ -77,7 +77,9 @@ Then run your beat with:
 
 or for mac/linux:
 
-````
-sudo chown root filebeat.yml 
-sudo ./filebeat -e
-````
+`sudo chown root filebeat.yml`
+
+`sudo ./filebeat -e`
+
+## View Your Data
+Log into your Kibana console at: https://app.vizion.ai/app/kibana
