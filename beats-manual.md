@@ -10,6 +10,24 @@ Beats is the platform for single-purpose data shippers. They send data from your
 
 ## Configure your beat to connect to Vizion ELK
 
-Your beat is configured with a YAML file, located at `/etc/<beatname>/<beatname>.yml` and comes set with sensible defaults. The main thing to configure is the connection to your Vizion ELK app and to Kibana (to install dashboards). To do this, you will need to separate 
+Your beat is configured with a YAML file, located at `/etc/<beatname>/<beatname>.yml` and comes set with sensible defaults. The main thing to configure is the connection to your Vizion ELK app and to Kibana (to install dashboards). To do this, you will need to separate your Vizion Elk url into components to get your username, password, and app id.
 
 ![graph on parsing vizion ELK URL](./assets/images/app-credentials-split.png)
+
+
+````#============================== Kibana =====================================
+
+# Starting with Beats version 6.0.0, the dashboards are loaded via the Kibana API.
+# This requires a Kibana endpoint configuration.
+setup.kibana:
+
+  # Kibana Host
+  # Scheme and port can be left out and will be set to the default (http and 5601)
+  # In case you specify and additional path, the scheme is required: http://localhost:5601/path
+  # IPv6 addresses should always be defined as: https://[2001:db8::1]:5601
+  host: "https://app.vizion.ai:443"
+  protocol: "https"
+  username: "e33d2ea501994214"
+  password: "b4b699b082a2f685"
+````
+
