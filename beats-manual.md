@@ -15,7 +15,8 @@ Your beat is configured with a YAML file, located at `/etc/<beatname>/<beatname>
 ![graph on parsing vizion ELK URL](./assets/images/app-credentials-split.png)
 
 
-````#============================== Kibana =====================================
+````
+#============================== Kibana =====================================
 
 # Starting with Beats version 6.0.0, the dashboards are loaded via the Kibana API.
 # This requires a Kibana endpoint configuration.
