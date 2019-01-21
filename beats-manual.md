@@ -10,11 +10,11 @@ Beats is the platform for single-purpose data shippers. They send data from your
 
 ## Configure your beat to connect to Vizion ELK
 
-Your beat is configured with a YAML file, located at `/etc/<beatname>/<beatname>.yml` and comes set with sensible defaults. The main thing to configure is the connection to your Vizion ELK app and to Kibana (to install dashboards). To do this, you will need to separate your Vizion Elk url into components to get your username, password, and app id.
+Your beat is configured with a YAML file, located at `/etc/<beatname>/<beatname>.yml` and comes set with sensible defaults. The main thing to configure is the connection to your Vizion ELK app and to Kibana (to install dashboards). To do this, you will need to separate your Vizion Elk url into components to get your username, password, and appId.
 
 ![graph on parsing vizion ELK URL](./assets/images/app-credentials-split.png)
 
-
+Enter these credentials in the sections for Kibana, and Outputs - Elasticsearch
 ````
 #============================== Kibana =====================================
 
@@ -28,7 +28,29 @@ setup.kibana:
   # IPv6 addresses should always be defined as: https://[2001:db8::1]:5601
   host: "https://app.vizion.ai:443"
   protocol: "https"
-  username: "e33d2ea501994214"
-  password: "b4b699b082a2f685"
+  username: "<< your Vizion ELK username >>"
+  password: "<< your Vizion ELK password >>"
 ````
+and
+````
+#================================ Outputs =====================================
 
+# Configure what output to use when sending the data collected by the beat.
+
+#-------------------------- Elasticsearch output ------------------------------
+output.elasticsearch:
+  # Array of hosts to connect to.
+  hosts: ["<< your Vizion ELK url >>:443"]
+
+  # Optional protocol and basic auth credentials.
+  #protocol: "https"
+  username: "<< your Vizion ELK username >>"
+  password: "<< your Vizion ELK password >>"
+  ssl.verification_mode: none
+  headers:
+    vizion-es-app-id: << your Vizion ELK appId >>
+  timeout: 500
+````
+Be sure to include port 443 at the end of you Vizion ELK url as above.
+
+## Modules
