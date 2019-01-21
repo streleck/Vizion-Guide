@@ -9,3 +9,7 @@ Beats is the platform for single-purpose data shippers. They send data from your
 * [Packetbeat](https://www.elastic.co/guide/en/beats/packetbeat/current/packetbeat-installation.html) - a real-time network packet analyzer that you can use with your Vizion ELK app to provide an application monitoring and performance analytics system. 
 
 ## Configure your beat to connect to Vizion ELK
+
+Your beat is configured with a YAML file, located at `/etc/<beatname>/<beatname>.yml` and comes set with sensible defaults. The main thing to configure is the connection to your Vizion ELK app and to Kibana (to install dashboards). To do this, you will need to separate 
+
+[graph on parsing vizion ELK URL](./assets/images/app-credentials-split.png)
