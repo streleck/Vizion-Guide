@@ -57,11 +57,11 @@ Be sure to include port 443 at the end of you Vizion ELK url as above.
 Filebeat and Metricbeat come with optional modules, which, when enabled, add functionality to the beat. For example, Metricbeat has a Docker module that will send Metrics on Docker and any containers stored on your machine.
 To see what modules are available (as well as which have been enabled), enter:
 
-`<beat name> modules list`
+`<beat name> modules list` or `./<beat name> modules list`
 
 To enable or disable a module:
 
-`<beat name> modules enable <module name>` or `<beat name> modules disable <module name>`
+`<beat name> modules enable(or disable) <module name>` or `./<beat name> modules enable(or disable) <module name>`
 
 Configuration files for individual modules are found in '/etc/<beat name>/modules.d`
 More on [Filebeat modules](https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-modules-overview.html) or [Metricbeat modules](https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-modules.html)
@@ -69,4 +69,15 @@ More on [Filebeat modules](https://www.elastic.co/guide/en/beats/filebeat/curren
 ## Start Your Beat
 To setup your beat and load the dashboards, enter:
 
-`<beat name> setup -e`
+`<beat name> setup -e` or `./<beat name> setup -e`
+
+Then run your beat with:
+
+`service <beat name> start`
+
+or for mac/linux:
+
+````
+sudo chown root filebeat.yml 
+sudo ./filebeat -e
+````
