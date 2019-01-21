@@ -10,7 +10,7 @@ Beats is the platform for single-purpose data shippers. They send data from your
 
 ## Configure your beat to connect to Vizion ELK
 
-Your beat is configured with a YAML file, located at `/etc/<beatname>/<beatname>.yml` and comes set with sensible defaults. The main thing to configure is the connection to your Vizion ELK app and to Kibana (to install dashboards). To do this, you will need to separate your Vizion Elk url into components to get your username, password, and appId.
+Your beat is configured with a YAML file, located at `/etc/<beat name>/<beat name>.yml` and comes set with sensible defaults. The main thing to configure is the connection to your Vizion ELK app and to Kibana (to install dashboards). To do this, you will need to separate your Vizion Elk url into components to get your username, password, and appId.
 
 ![graph on parsing vizion ELK URL](./assets/images/app-credentials-split.png)
 
@@ -54,3 +54,19 @@ output.elasticsearch:
 Be sure to include port 443 at the end of you Vizion ELK url as above.
 
 ## Modules
+Filebeat and Metricbeat come with optional modules, which, when enabled, add functionality to the beat. For example, Metricbeat has a Docker module that will send Metrics on Docker and any containers stored on your machine.
+To see what modules are available (as well as which have been enabled), enter:
+
+`<beat name> modules list`
+
+To enable or disable a module:
+
+`<beat name> modules enable <module name>` or `<beat name> modules disable <module name>`
+
+Configuration files for individual modules are found in '/etc/<beat name>/modules.d`
+More on [Filebeat modules](https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-modules-overview.html) or [Metricbeat modules](https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-modules.html)
+
+## Start Your Beat
+To setup your beat and load the dashboards, enter:
+
+`<beat name> setup -e`
